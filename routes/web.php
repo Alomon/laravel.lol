@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,3 +92,21 @@ Route::prefix('/test3')->group( function () {
         return "Тест - " . $n;
     });
 });
+
+/* Маршрут, использующий контроллер */
+/* Route::get('/маршрут', ['полное имя контроллера', 'имя действия']); */
+Route::get('/hi', ['App\Http\Controllers\PostController','hello']);
+
+/* если мы заюзали имя контроллера (use App\Http\Controllers\PostController), то можем писать так ... */
+Route::get('/hello', [PostController::class, 'hello']);
+
+/* Передача параметра маршрута в контроллер */
+Route::get('/hi/{name}', [PostController::class, 'hello2']);
+
+/* Применение параметров маршрутов */
+Route::get('/hello/{id}', [PostController::class, 'hello3'])->where('id', '[1-4]');
+
+/* Создайте маршрут, который параметром будет принимать имя юзера, а в браузером результатом отправлять его город.
+ * Сделайте так, чтобы, если параметром передано несуществующее имя, в браузер выводилось сообщение об этом. */
+
+Route::get('/hello5/{name}', [PostController::class, 'hello5']);
