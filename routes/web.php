@@ -110,3 +110,8 @@ Route::get('/hello/{id}', [PostController::class, 'hello3'])->where('id', '[1-4]
  * Сделайте так, чтобы, если параметром передано несуществующее имя, в браузер выводилось сообщение об этом. */
 
 Route::get('/hello5/{name}', [PostController::class, 'hello5']);
+
+/* Представления */
+Route::get('/hello6', [PostController::class, 'hello6']);
+
+Route::get('/hello7/{name}', [PostController::class, 'hello7']);
